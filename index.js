@@ -18,11 +18,10 @@ app.get('/:ticker/incomestatement', async (req, res, next) => {
   try {
     let alphavantage = await fetch('https://www.alphavantage.co/query?function=INCOME_STATEMENT&symbol=IBM&apikey=demo');
     let data = await alphavantage.json();
+    res.json(data);
   } catch (err) {
     next(err);
   }
-  
-  res.json(data);
 });
 
 // GET balance sheet.
@@ -32,11 +31,10 @@ app.get('/:ticker/balancesheet', async (req, res, next) => {
   try {
     let alphavantage = await fetch('https://www.alphavantage.co/query?function=BALANCE_SHEET&symbol=IBM&apikey=demo');
     let data = await alphavantage.json();
+    res.json(data);
   } catch (err) {
     next(err);
   }
-  
-  res.json(data);
 });
 
 // GET cash flow.
@@ -46,11 +44,10 @@ app.get('/:ticker/cashflow', async (req, res, next) => {
   try {
     let alphavantage = await fetch('https://www.alphavantage.co/query?function=CASH_FLOW&symbol=IBM&apikey=demo');
     let data = await alphavantage.json();
+    res.json(data);
   } catch (err) {
     next(err);
-  }
-
-  res.json(data);
+  }  
 });
 
 // 404 handling middleware.
