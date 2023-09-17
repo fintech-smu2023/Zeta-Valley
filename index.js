@@ -38,7 +38,7 @@ app.get('/:ticker/incomestatement', async (req, res, next) => {
       }
     }
 
-    let alphavantage = await fetch(`https://www.alphavantage.co/query?function=INCOME_STATEMENT&symbol=IBM&apikey=demo`);
+    let alphavantage = await fetch(`https://www.alphavantage.co/query?function=INCOME_STATEMENT&symbol=${ticker}&apikey=${process.env.ALPHA_VANTAGE_KEY}`);
     let data = await alphavantage.json();
 
     data.timestamp = new Date();
@@ -74,7 +74,7 @@ app.get('/:ticker/balancesheet', async (req, res, next) => {
       }
     }
 
-    let alphavantage = await fetch('https://www.alphavantage.co/query?function=BALANCE_SHEET&symbol=IBM&apikey=demo');
+    let alphavantage = await fetch(`https://www.alphavantage.co/query?function=BALANCE_SHEET&symbol=${ticker}&apikey=${process.env.ALPHA_VANTAGE_KEY}`);
     let data = await alphavantage.json();
 
     data.timestamp = new Date();
@@ -110,7 +110,7 @@ app.get('/:ticker/cashflow', async (req, res, next) => {
       }
     }
 
-    let alphavantage = await fetch('https://www.alphavantage.co/query?function=CASH_FLOW&symbol=IBM&apikey=demo');
+    let alphavantage = await fetch(`https://www.alphavantage.co/query?function=CASH_FLOW&symbol=${ticker}&apikey=${process.env.ALPHA_VANTAGE_KEY}`);
     let data = await alphavantage.json();
 
     data.timestamp = new Date();
