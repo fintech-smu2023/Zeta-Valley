@@ -2,17 +2,16 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Constants.
-const oneDay = 24 * 60 * 60 * 1000;
-
 // Load environment variables.
 require('dotenv').config();
 
-// Connect to MongoDB.
+// MongoDB configuration.
 const MongoClient = require('mongodb').MongoClient;
 let mongoClient = new MongoClient(process.env.MONGODB_URI);
 const database = mongoClient.db('zeta_valley');
-mongoClient.connect();
+
+// Constants.
+const oneDay = 24 * 60 * 60 * 1000;
 
 // Middleware to parse JSON bodies.
 app.use(express.json());
@@ -151,7 +150,16 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Something broke!', stack: err.stack });
 });
 
-// Start app.
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`);
-})
+async function main() {
+  // Connect to MongoDB first.
+  await mongoClient.connect();
+
+  console.log(`App connected to MongoDB at ${process.env.MONGODB_URI}`);
+
+  // Start app.
+  app.listen(port, () => {
+    console.log(`App listening on port ${port}`);
+  })
+}
+
+main();
