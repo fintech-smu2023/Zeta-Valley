@@ -148,7 +148,7 @@ app.use((req, res, next) => {
 // 500 handling middleware.
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).send('Something broke!');
+  res.status(500).json({ error: 'Something broke!', stack: err.stack });
 });
 
 // Start app.
