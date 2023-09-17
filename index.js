@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Default / route.
 app.get('/', (req, res) => {
-  res.json({});
+  res.json({ message: 'Welcome to Zeta Valley!' });
 });
 
 // GET income statement.
