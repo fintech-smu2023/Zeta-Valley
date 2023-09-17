@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
+// Load environment variables.
+require('dotenv').config();
+
 // Middleware to parse JSON bodies.
 app.use(express.json());
 
