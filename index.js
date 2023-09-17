@@ -47,7 +47,7 @@ app.get('/:ticker/incomestatement', async (req, res, next) => {
       collection.updateOne({ symbol: ticker }, { $set: data });
     } else {
       collection.insertOne(data);
-      collection.createIndex({ symbol: 'text' });
+      collection.createIndex({ symbol: 1 });
     }
 
     res.json(data);
@@ -83,7 +83,7 @@ app.get('/:ticker/balancesheet', async (req, res, next) => {
       collection.updateOne({ symbol: ticker }, { $set: data });
     } else {
       collection.insertOne(data);
-      collection.createIndex({ symbol: 'text' });
+      collection.createIndex({ symbol: 1 });
     }
 
     res.json(data);
@@ -119,7 +119,7 @@ app.get('/:ticker/cashflow', async (req, res, next) => {
       collection.updateOne({ symbol: ticker }, { $set: data });
     } else {
       collection.insertOne(data);
-      collection.createIndex({ symbol: 'text' });
+      collection.createIndex({ symbol: 1 });
     }
 
     res.json(data);
