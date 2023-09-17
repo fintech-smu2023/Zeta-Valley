@@ -19,6 +19,11 @@ app.use(express.json());
 // Parse urlencoded request body.
 app.use(express.urlencoded({ extended: true }));
 
+// Default / route.
+app.get('/', (req, res) => {
+  res.json({});
+});
+
 // GET income statement.
 app.get('/:ticker/incomestatement', async (req, res, next) => {
   let ticker = req.params.ticker;
